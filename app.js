@@ -15,6 +15,10 @@ const botName = 'Admin'
 //set a static folder 
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.get('/', (req, res) => {
+  res.sendFile('./public/index.html', { root: __dirname });
+});
+
 //when user connects
 io.on('connection', socket => {
     socket.on('joinroom', ({ username, room }) => {
