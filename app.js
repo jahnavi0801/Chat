@@ -23,7 +23,7 @@ io.on('connection', socket => {
         socket.join(user.room)
 
         //welcome message
-        socket.emit('message', formatMessages(botName,`Welcome ${user.username}!`))
+        socket.emit('message', formatMessages(botName,`${user.username} Welcome to ${user.room}!`))
 
         //show to all the members except user or use (io.emit) for every member
         socket.broadcast.to(user.room).emit('message', formatMessages(botName, `${user.username} has joined the chat`))

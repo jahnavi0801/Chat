@@ -26,7 +26,6 @@ socket.on('message', message => {
 
     //scroll Down
     chatMessages.scrollTop = chatMessages.scrollHeight
-
 })
 
 //event listenner for submission of that form
