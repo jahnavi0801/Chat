@@ -53,11 +53,11 @@ io.on('connection', socket => {
       const user = getUser(socket.id)
       //emit back to the client
       io.to(user.room).emit('message', formatMessages(user.username, `Has invited +91${num}`))
-      const accountSid = process.env.accountSid; // Your Account SID from www.twilio.com/console
-      const authToken = process.env.your_auth_token;   // Your Auth Token from www.twilio.com/console
+      var accountSid = process.env.accountSid; // Your Account SID from www.twilio.com/console
+      var authToken = process.env.your_auth_token;   // Your Auth Token from www.twilio.com/console
 
-      const twilio = require('twilio');
-      const client = new twilio(accountSid, authToken);
+      var twilio = require('twilio');
+      var client = new twilio(accountSid, authToken);
 
       client.messages.create({
           body: `Hello you have been invited to ChatApp by your friend ${user.username} to ${user.room} group!`,
