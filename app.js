@@ -9,6 +9,8 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
+require('dotenv').config()
+
 //BotName 
 const botName = 'Admin'
 
@@ -44,6 +46,25 @@ io.on('connection', socket => {
         const user = getUser(socket.id)
         //emit back to the client
         io.to(user.room).emit('message', formatMessages(user.username, msg))
+    })
+
+    //catch Invitee Number
+    socket.on('inviteNo', num => {
+      const user = getUser(socket.id)
+      //emit back to the client
+      io.to(user.room).emit('message', formatMessages(user.username, `Has invited +91${num}`))
+      var accountSid = process.env.accountSid; // Your Account SID from www.twilio.com/console
+      var authToken = process.env.your_auth_token;   // Your Auth Token from www.twilio.com/console
+
+      var twilio = require('twilio');
+      var client = new twilio(accountSid, authToken);
+
+      client.messages.create({
+          body: `Hello you have been invited to ChatApp by your friend ${user.username} to ${user.room} group!`,
+          to: `+91${num}`,  // Text this number
+          from: '+12019037484' // From a valid Twilio number
+      })
+      .then((message) => res.send(`Message is sent to ${message.to}`));
     })
 
      // disconnect when user leaves

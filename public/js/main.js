@@ -1,4 +1,5 @@
 const chatForm = document.getElementById('chat-form')
+const chatInvite = document.getElementById('chat-invite')
 const chatMessages = document.querySelector('.chat-messages')
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
@@ -21,7 +22,6 @@ socket.on('roomUsers', ({ room, users }) => {
 
 //input messages from server
 socket.on('message', message => {
-    console.log(message);
     outmessages(message)
 
     //scroll Down
@@ -41,6 +41,17 @@ chatForm.addEventListener('submit', (e) => {
     //clear text box after submmision
     e.target.elements.msg.value = ''
     e.target.elements.msg.focus()
+})
+
+chatInvite.addEventListener('submit', (b) => {
+    b.preventDefault()
+    const msg = b.target.elements.number.value
+
+    //Emitting number to server
+    socket.emit('inviteNo', msg);
+
+    b.target.elements.number.value = ''
+    b.target.elements.number.focus()
 })
 
 //Output messages to clinet

@@ -20,6 +20,11 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/js/mdb.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+      .bl{
+        margin-left: 60px;
+      }
+    </style>
     <title>ChatApp</title>
 </head>
 <body>
@@ -38,6 +43,13 @@
                       <hr>
                       <h3><i class="fas fa-users"></i> Users</h3>
                       <ul id="users"></ul>
+                      <br>
+                      <form id="chat-invite">
+                        <!-- Default input -->
+                        <h3><i class="fas fa-users"></i> Friends</h3>
+                        <input type="text" id="number" class="form-control" placeholder="Mobile Number" required autocomplete="off">
+                        <button type="button" class="btn btn-primary btn-sm bl">Invite</button>
+                      </form>
                     </div>
                     <div class="chat-messages"></div>
                   </main>
