@@ -1,10 +1,13 @@
 
 /* Chat Page */
+body {
+	background-color: #152238;
+}
 
 :root {
 	--dark-color-a: #e2f3e7;
 	--dark-color-b: #a0a0a5;
-	--light-color: #3c3d3d;
+	--light-color: #23233a;
 }
 
 .chat-container {
